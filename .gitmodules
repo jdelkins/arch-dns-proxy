@@ -1,0 +1,3 @@
+[submodule "netflix-no-ipv6-dns-proxy"]
+	path = netflix-no-ipv6-dns-proxy
+	url = ../../netflix-no-ipv6-dns-proxy

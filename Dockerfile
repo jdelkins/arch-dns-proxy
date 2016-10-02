@@ -10,6 +10,8 @@ ADD setup/*.conf /etc/supervisor/conf.d/
 # add install bash script
 ADD setup/root/*.sh /root/
 
+ADD netflix-no-ipv6-dns-proxy /dns-proxy/
+
 # add pipework
 ADD https://raw.githubusercontent.com/jpetazzo/pipework/master/pipework /root/
 
@@ -23,20 +25,8 @@ RUN chmod +x /root/pipework /root/*.sh && \
 # docker settings
 #################
 
-# map /config to host defined config path (used to store configuration from app)
-VOLUME /config
-
-# map /data to host defined data path (used to store data from app)
-VOLUME /cache
-
 # expose port for http
-EXPOSE 3128/tcp
-
-# set environment variables for user nobody
-ENV HOME /home/nobody
-
-# set permissions
-#################
+EXPOSE 2053
 
 # run script to set uid, gid and permissions
 CMD ["/bin/bash", "/root/init.sh"]
