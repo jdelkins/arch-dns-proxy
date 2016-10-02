@@ -60,7 +60,20 @@ unless you use an IP address that is reachable from all of those networks.
 
 ## Installation
 
+Start by deploying the image.
+
 ```
 docker build -t dns-proxy .
 docker run -d -p 2053/udp dns-proxy
 ```
+
+Now, point your clients to use this dns server somehow. How to do that varies
+greatly depending on your setup. You may just need to update the DHCP
+configuration of your router. In my setup, which uses
+a [pfSense](http://www.pfsense.org) box as my edge router, I set up the "DNS
+Resolver" (which is [unbound](http://wwww.unbound.net)) to use domain overrides
+for "netflix.com" and "nflximg.com" to point to this special resolver. This
+takes care of all local clients. Note the above caveat, however, about
+Chromecast/Android clients. I curently don't have any of those to worry about,
+so this setup works for me.
+
